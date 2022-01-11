@@ -7,7 +7,7 @@ those modules if they exist and are needed for ingestion.'''
 import requests
 import json
 import os
-#import sys
+import sys
 import argparse
 import yaml
 import ruamel.yaml
@@ -33,19 +33,22 @@ def create_dict(id, modules, TO, tumor, normal=None):
 
     # run through each file in the API and add it to the output dictionary
     for wildcard in file.keys():
-        for f in file[wildcard]:
-            path = f['file_path_template']
-            module = path.split("/")[1] #second directory in path is always module name
-            file_TO = f['tumor_only_assay']
-            optional = f['optional']
-            #ensures that no normal files are included for TO samples
-            exclude = TO and (not file_TO)
-            if (not optional) and (module in modules) and (not exclude):
-                path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
-                if module in dict:
-                    dict[module].append(path)
-                else:
-                    dict[module] = [path]
+        if not ((wildcard == "normal cimac id") and TO == True): # dont make normal sample files for TO runs. API may need fixing
+            for f in file[wildcard]:
+                path = f['file_path_template']
+                module = path.split("/")[1] #second directory in path is always module name
+                file_TO = f['tumor_only_assay']
+                optional = f['optional']
+                #ensures that no normal files are included for TO samples
+                exclude = TO and (not file_TO)
+                if (not optional) and (module in modules) and (not exclude):
+                    path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
+                    if module in dict:
+                        dict[module].append(path)
+                    else:
+                        dict[module] = [path]
+
+
     return dict
 
 def file_writer(path, text=''):
@@ -103,12 +106,12 @@ def create_yaml(file_dict, code_nums):
 
         # checks that user error numbers are valid
         if code_num not in code_strings:
-            print('please make sure all error codes are valid')
+            print('Please make sure all error codes are valid and try again.')
             sys.exit(-1)
 
         # 11 requires a software field that should be provided once
         if code_num == "11":
-            software = raw_input("please enter errored software for %s: " % (module))
+            software = raw_input("Please enter errored software for %s: " % (module))
 
         # generates appropriate entry for each file based on error code
         for file in file_dict[module]:
@@ -127,8 +130,9 @@ def main():
 
     parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter, # keep newlines
-    description="Simply add the corresponding error code for each failed module \nex. -n 30 -c 21 \nsee dropbox for error codes" )
+    description="Simply add name of the setup yaml and the corresponding error code for each failed module \nex. -n 30 -c 21 \nsee dropbox for error codes" )
 
+    parser.add_argument("yaml", help="(REQUIRED) name of the yaml used to generate the instance")
     parser.add_argument("-a", "--align", help="align module error code")
     parser.add_argument("-c", "--clonality", help="clonality error code")
     parser.add_argument("-d", "--copynumber", help="copynumber error code")
