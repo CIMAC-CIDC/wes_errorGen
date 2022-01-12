@@ -2,8 +2,8 @@
 '''Jacob Geisberg Jan,2022
 This script generates all of the missing files required for ingestion
 of errored runs based on user input of which modules have failed and their
-error codes. Please note that this will overwrite existing files related to
-those modules if they exist and are needed for ingestion.'''
+error codes.'''
+
 import requests
 import json
 import os
@@ -11,6 +11,7 @@ import sys
 import argparse
 import yaml
 import ruamel.yaml
+from pathlib import Path
 
 #helpers
 def create_dict(id, modules, TO, tumor, normal=None):
@@ -39,43 +40,32 @@ def create_dict(id, modules, TO, tumor, normal=None):
                 module = path.split("/")[1] #second directory in path is always module name
                 file_TO = f['tumor_only_assay']
                 optional = f['optional']
-                #ensures that no normal files are included for TO samples
-                exclude = TO and (not file_TO)
+                exclude = TO and (not file_TO)#ensures that no normal files are included for TO samples
                 if (not optional) and (module in modules) and (not exclude):
                     path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
                     if module in dict:
                         dict[module].append(path)
                     else:
                         dict[module] = [path]
-
-
     return dict
 
-def file_writer(path, text=''):
+
+def file_writer(path):
     '''Writes text to a given path. Will create directories as needed.
     '''
     #overwrite existing file
-    if os.path.isfile(path):
-        # MAYBE WARN USERS ABOUT OVERWRITE AND ASK FOR AUTHORIZATION
-        with open(path, "w") as out_file:
-            print("overwriting", path)
-            out_file.write(text)
+    if os.path.exists(path):
+        print("File already exists: %s " %(path))
 
-    # check and create needed file structure step by step
     else:
-        split = path.split('/')
-        directories, name = split[:-1], split[-1]
-        existing_path = ""
-        for d in directories:
-            existing_path = existing_path + d + "/"
-            if os.path.isdir(existing_path) == False:
-                os.mkdir(existing_path)
-        with open(path, "w") as out_file:
-            out_file.write(text)
-            print("wrote:",  path)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        print('wrote: %s' %(path))
+
+    Path(path).touch() # should it touch all the files or just the new ones?
 
 
-def create_yaml(file_dict, code_nums):
+
+def create_yaml(run_name, file_dict, code_nums):
     '''Taking a dictionary of files and a dictionary of error codes for each file,
     it will create an error.yaml file.
     '''
@@ -95,12 +85,9 @@ def create_yaml(file_dict, code_nums):
     '23': 'Unexpected interruption of service',
     '30': 'Did not finish computation after 6 hours'
     }
-    # url = 'https://www.dropbox.com/s/vhfxnn6v3ta6klzFailure_Codes.xlsx?dl=0'
-    # file = requests.get(url)
-    # print(file.text)
 
-    # Itterates through the file dictionary to write yaml line by line
-    text = "---\n\nerrors:\n"
+    # Itterates through the file dictionary to create yaml entries for each file
+    dict = {"errors":{}} # stores the yaml entries for each file
     for module in file_dict:
         code_num = code_nums[module]
 
@@ -111,18 +98,24 @@ def create_yaml(file_dict, code_nums):
 
         # 11 requires a software field that should be provided once
         if code_num == "11":
-            software = raw_input("Please enter errored software for %s: " % (module))
+            software = input("Please enter errored software for %s: " % (module))
 
         # generates appropriate entry for each file based on error code
         for file in file_dict[module]:
-            message = '  %s: "ERROR%s: %s"\n' % (file, code_num,code_strings[code_num])
+            message = "ERROR%s: %s" % (code_num,code_strings[code_num])
             # 11 and 12 are special cases that require string replacement
             if code_nums[module] == "11":
                 message = message.replace("XXX", software)
             elif code_nums[module] == "12":
                 message = message.replace("XXX", module)
-            text = text + message
-    return text
+            dict['errors'][file] = message
+
+    path = "analysis/%s_error.yaml" % (run_name)
+    os.makedirs(os.path.dirname(path), exist_ok=True)# in case analysis folder doesn't yet exist
+    with open(path, "w") as outfile:
+        yaml.dump(dict, outfile, width=float("inf"), sort_keys=True)
+    print("successfully wrote yaml to: %s" % (path))
+
 
 
 #main function
@@ -130,7 +123,20 @@ def main():
 
     parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter, # keep newlines
-    description="Simply add name of the setup yaml and the corresponding error code for each failed module \nex. -n 30 -c 21 \nsee dropbox for error codes" )
+    description="Simply add name of the setup yaml and the corresponding error code for each failed module \nex. -n 30 -c 21 \n",
+    epilog= "error codes:\n"
+    '00: Unknown error\n'
+    '01: Data file corrupt or unreadable\n'
+    '02: PE reads incorrectly paired\n'
+    '03: Poor read quality\n'
+    '04: Too few reads\n'
+    '05: Duplicate normal sample -- not used for analysis\n'
+    '11: External software bug/issue {software: XXX}\n'
+    '12: WES pipeline software bug/issue {module: XXX}\n'
+    '21: Out of disk space error\n'
+    '22: Out of memory error\n'
+    '23: Unexpected interruption of service\n'
+    '30: Did not finish computation after 6 hours\n')
 
     parser.add_argument("yaml", help="(REQUIRED) name of the yaml used to generate the instance")
     parser.add_argument("-a", "--align", help="align module error code")
@@ -150,16 +156,11 @@ def main():
     args = parser.parse_args()
     codes_dict = vars(args)
     codes_dict = {key: value for (key, value) in codes_dict.items() if value is not None}
+    yaml_path = codes_dict.pop("yaml")
     modules = [x for x in codes_dict]
 
-    #search for config yaml in current directory, error if there is not 1
-    yamls = [file for file in os.listdir(".") if file.endswith(".yaml")]
-    if len(yamls) != 1:
-        print("\nERROR please make sure you are in the wes directory and that exactly one .yaml file is present.")
-        sys.exit(-1)
-
     # open yaml file
-    with open(yamls[0], "r") as yaml_file:
+    with open(yaml_path, "r") as yaml_file:
         try:
             yaml_dict = yaml.safe_load(yaml_file)
 
@@ -168,7 +169,7 @@ def main():
 
     #interpret yaml to get run, tumor, and normal ids
     samples = yaml_dict["metasheet"]
-    run_name = samples.keys()[0]
+    run_name = list(samples)[0]
     tumor = samples[run_name]["tumor"]
     if "normal" in samples[run_name].keys():
         normal = samples[run_name]['normal']
@@ -179,15 +180,10 @@ def main():
 
 
     file_dict = create_dict(run_name, modules,TO,tumor,normal)
-    yaml_text = create_yaml(file_dict, codes_dict)
-    path = "analysis/%s_error.yaml" % (run_name)
-    file_writer(path,yaml_text)
+    yaml_text = create_yaml(run_name, file_dict, codes_dict)
     for module in file_dict:
         for file in file_dict[module]:
             file_writer(file)
-
-
-
 
 
 if __name__=='__main__':
