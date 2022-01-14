@@ -59,9 +59,9 @@ def file_writer(path):
 
     else:
         os.makedirs(os.path.dirname(path), exist_ok=True)
+        Path(path).touch()
         print('wrote: %s' %(path))
 
-    Path(path).touch() # should it touch all the files or just the new ones?
 
 
 
@@ -156,19 +156,19 @@ def main():
     args = parser.parse_args()
     codes_dict = vars(args)
     codes_dict = {key: value for (key, value) in codes_dict.items() if value is not None}
-    yaml_path = codes_dict.pop("yaml")
+    config_yaml_path = codes_dict.pop("yaml") # config_yaml_path is not a module and should be stored separately
     modules = [x for x in codes_dict]
 
     # open yaml file
-    with open(yaml_path, "r") as yaml_file:
+    with open(config_yaml_path, "r") as config_file:
         try:
-            yaml_dict = yaml.safe_load(yaml_file)
+            config_dict = yaml.safe_load(config_file)
 
         except yaml.YAMLError as error:
             print(error)
 
     #interpret yaml to get run, tumor, and normal ids
-    samples = yaml_dict["metasheet"]
+    samples = config_dict["metasheet"]
     run_name = list(samples)[0]
     tumor = samples[run_name]["tumor"]
     if "normal" in samples[run_name].keys():
@@ -180,7 +180,7 @@ def main():
 
 
     file_dict = create_dict(run_name, modules,TO,tumor,normal)
-    yaml_text = create_yaml(run_name, file_dict, codes_dict)
+    create_yaml(run_name, file_dict, codes_dict)
     for module in file_dict:
         for file in file_dict[module]:
             file_writer(file)
