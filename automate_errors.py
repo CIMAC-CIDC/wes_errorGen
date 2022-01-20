@@ -10,7 +10,6 @@ import os
 import sys
 import argparse
 import yaml
-import ruamel.yaml
 from pathlib import Path
 
 #helpers
