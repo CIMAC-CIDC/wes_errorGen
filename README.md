@@ -4,8 +4,16 @@
 In order for the CIMAC-CIDC portal to ingest a sample, the sample needs to have a specific set of files. The current set of files required for WES samples can be found [here](https://github.com/CIMAC-CIDC/cidc-ngs-pipeline-api/blob/master/cidc_ngs_pipeline_api/wes/wes_output_API.json). Unfortunately, when modules are skipped, some of the files are not created and the sample cannot be ingested. This is where wes_errorgen comes in! Instead of manually determining and creating missing files, you can use wes_errorgen to do it for you. It can even create the error.yaml file for you, saving lots of time.  
 
 ### How to run wes_errorgen
+Before you start, make sure that you are in the wes directory of the instance for which you intend to generate error files. The first step is to clone the repository containing the automate_errors script. This can be done by ssh or by HTTPS. 
+```bash
+#SSH
+git clone git@bitbucket.org:plumbers/wes_errorgen.git
 
-Before you start, make sure that you are in the wes directory of the instance for which you intend to generate error files. Next, ensure that "automate_errors.py" and the setup yaml file, often named "SAMPLENAME.yaml" or "SAMPLENAME_processed.yaml", are also located in the wes directory. While this is not strictly necessary, it will make running the script easier.
+#HTTPS
+git clone https://jberg1999-admin@bitbucket.org/plumbers/wes_errorgen.git
+```
+
+Next, ensure that "automate_errors.py" and the setup yaml file, often named "SAMPLENAME.yaml" or "SAMPLENAME_processed.yaml", are also located in the wes directory. While this is not strictly necessary, it will make running the script easier.
 
 With the setup complete, a good first step is to run automate_errors.py with the help argument to get a better idea of how the script works.
 
