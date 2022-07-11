@@ -4,7 +4,7 @@
 In order for the CIMAC-CIDC portal to ingest a sample, the sample needs to have a specific set of files. The current set of files required for WES samples can be found [here](https://github.com/CIMAC-CIDC/cidc-ngs-pipeline-api/blob/master/cidc_ngs_pipeline_api/wes/wes_output_API.json). Unfortunately, when modules are skipped, some of the files are not created and the sample cannot be ingested. This is where wes_errorgen comes in! Instead of manually determining and creating missing files, you can use wes_errorgen to do it for you. It can even create the error.yaml file for you, saving lots of time.  
 
 ### How to run wes_errorgen
-Before you start, make sure that you are in the wes directory of the instance for which you intend to generate error files. The first step is to clone the repository containing the automate_errors script. This can be done by ssh or by HTTPS. 
+Before you start, make sure that you are in the wes directory of the instance for which you intend to generate error files. The first step is to clone the repository containing the automate_errors script. This can be done by ssh or by HTTPS.
 ```bash
 #SSH
 git clone git@bitbucket.org:plumbers/wes_errorgen.git
@@ -19,29 +19,37 @@ With the setup complete, a good first step is to run automate_errors.py with the
 
 ```bash
 python automate_errors.py -h
-usage: automate_errors.py [-h] [-a ALIGN] [-c CLONALITY] [-d COPYNUMBER] [-e COVERAGE] [-g GERMLINE]
-                          [-m METRICS] [-q MISSENSOR2] [-n NEOANTIGEN] [-o OPTITYPE] [-p PURITY]
-                          [-r REPORT] [-t RNA] [-s SOMATIC] [-x XHLA]
+usage: automate_errors.py [-h] [-a ALIGN] [-c CLONALITY] [-d CNVKIT]
+                          [-e COPYNUMBER] [-f COVERAGE] [-g GERMLINE]
+                          [-i HLAHD] [-m METRICS] [-q MISSENSOR2]
+                          [-n NEOANTIGEN] [-o OPTITYPE] [-p PURITY]
+                          [-r REPORT] [-u RNA] [-s SOMATIC] [-t TCELLEXTRECT]
+                          [-x XHLA]
                           yaml
 
 Simply add name of the setup yaml and the corresponding error code for each failed module
 ex. -n 30 -c 21
 
 positional arguments:
-  yaml                  (REQUIRED) name of the yaml used to generate the instance
+  yaml                  (REQUIRED) name of the yaml used to generate the
+                        instance
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -a ALIGN, --align ALIGN
                         align module error code
   -c CLONALITY, --clonality CLONALITY
                         clonality error code
-  -d COPYNUMBER, --copynumber COPYNUMBER
+  -d CNVKIT, --cnvkit CNVKIT
+                        cnvkit error code
+  -e COPYNUMBER, --copynumber COPYNUMBER
                         copynumber error code
-  -e COVERAGE, --coverage COVERAGE
+  -f COVERAGE, --coverage COVERAGE
                         coverage error code
   -g GERMLINE, --germline GERMLINE
                         germline error code
+  -i HLAHD, --hlahd HLAHD
+                        hlahd error code
   -m METRICS, --metrics METRICS
                         metrics error code
   -q MISSENSOR2, --missensor2 MISSENSOR2
@@ -54,9 +62,11 @@ optional arguments:
                         purity error code
   -r REPORT, --report REPORT
                         report error code
-  -t RNA, --rna RNA     rna error code
+  -u RNA, --rna RNA     rna error code
   -s SOMATIC, --somatic SOMATIC
                         somatic error code
+  -t TCELLEXTRECT, --tcellextrect TCELLEXTRECT
+                        tcellextrect error code
   -x XHLA, --xhla XHLA  xhla error code
 
 error codes:
@@ -78,13 +88,14 @@ As you can see, the script takes one required argument called "yaml" and a bunch
 While the help message is pretty robust, if you are already familiar with the program or want a shorter output, running the script without the help argument will provide a more concise output.
 ```bash
 python automate_errors.py   
-usage: automate_errors.py [-h] [-a ALIGN] [-c CLONALITY] [-d COPYNUMBER]
-                          [-e COVERAGE] [-g GERMLINE] [-m METRICS]
-                          [-q MISSENSOR2] [-n NEOANTIGEN] [-o OPTITYPE]
-                          [-p PURITY] [-r REPORT] [-t RNA] [-s SOMATIC]
-                          [-x XHLA]
+usage: automate_errors.py [-h] [-a ALIGN] [-c CLONALITY] [-d CNVKIT]
+                          [-e COPYNUMBER] [-f COVERAGE] [-g GERMLINE]
+                          [-i HLAHD] [-m METRICS] [-q MISSENSOR2]
+                          [-n NEOANTIGEN] [-o OPTITYPE] [-p PURITY]
+                          [-r REPORT] [-u RNA] [-s SOMATIC]
+                          [-t TCELLEXTRECT] [-x XHLA]
                           yaml
-automate_errors.py: error: too few arguments
+automate_errors.py: error: the following arguments are required: yaml
 ```
 
 Running a simple example in which align stalled out (error code 30) and neoantigen faced and unknown error (error code 00) would look like this.

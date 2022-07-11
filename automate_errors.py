@@ -140,14 +140,17 @@ def main():
     parser.add_argument("yaml", help="(REQUIRED) name of the yaml used to generate the instance")
     parser.add_argument("-a", "--align", help="align module error code")
     parser.add_argument("-c", "--clonality", help="clonality error code")
-    parser.add_argument("-d", "--copynumber", help="copynumber error code")
-    parser.add_argument("-e", "--coverage", help="coverage error code")
+    parser.add_argument("-d", "--cnvkit", help="cnvkit error code")# new in WESv3
+    parser.add_argument("-e", "--copynumber", help="copynumber error code")
+    parser.add_argument("-f", "--coverage", help="coverage error code")
     parser.add_argument("-g", "--germline", help="germline error code")
+    parser.add_argument("-i", "--hlahd", help="hlahd error code") # new in WESv3
     parser.add_argument("-m", "--metrics", help="metrics error code")
     parser.add_argument("-q", "--missensor2", help="missensor2 error code")
     parser.add_argument("-n", "--neoantigen", help="neoantigen error code")
     parser.add_argument("-o", "--optitype", help="optitype error code")
     parser.add_argument("-p", "--purity", help="purity error code")
+    #DO WE NEED RECALIBRATION HERE? NOT INGESTED BUT COULD BE NEEDED FOR ERROR.YAML
     parser.add_argument("-r", "--report", help="report error code")
     parser.add_argument("-u", "--rna", help="rna error code")
     parser.add_argument("-s", "--somatic", help="somatic error code")
