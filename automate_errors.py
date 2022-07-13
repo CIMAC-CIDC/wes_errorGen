@@ -36,12 +36,15 @@ def create_dict(id, modules, TO, tumor, normal=None):
         if not ((wildcard == "normal cimac id") and TO == True): # dont make normal sample files for TO runs. API may need fixing
             for f in file[wildcard]:
                 path = f['file_path_template']
-                module = path.split("/")[1] #second directory in path is always module name
+                module = path.split("/")[1] #second directory in path is module name (for our purposes)
                 file_TO = f['tumor_only_assay']
                 optional = f['optional']
                 exclude = TO and (not file_TO)#ensures that no normal files are included for TO samples
-                if (not optional) and (module in modules) and (not exclude):
+                #if (not optional) and (module in modules) and (not exclude):
+                if (not optional) and (not exclude):
                     path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
+                    # if module not in modules:
+                    #     print("hi!!!!", module, path)
                     if module in dict:
                         dict[module].append(path)
                     else:
@@ -54,13 +57,12 @@ def file_writer(path):
     DOES NOT OVERWITE EXISTING FILES!
     '''
     #overwrite existing file
-    if os.path.exists(path):
-        print("File already exists: %s " %(path))
+    # if os.path.exists(path):
+    #     print("File already exists: %s " %(path))
 
-    else:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        Path(path).touch()
-        print('wrote: %s' %(path))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    Path(path).touch()
+    print('wrote: %s' %(path))
 
 
 
@@ -80,7 +82,7 @@ def create_yaml(run_name, file_dict, code_nums):
     '05': 'Duplicate normal sample -- not used for analysis',
     '11': 'External software bug/issue {software: XXX}',
     '12': 'WES pipeline software bug/issue {module: XXX}',
-    '13': 'Upstream module bug/issue {module: XXX}', #NOT REAL YET!!!!!!
+    '13': 'Upstream module bug/issue {module: XXX}',
     '21': 'Out of disk space error',
     '22': 'Out of memory error',
     '23': 'Unexpected interruption of service',
@@ -90,30 +92,41 @@ def create_yaml(run_name, file_dict, code_nums):
     # Itterates through the file dictionary to create yaml entries for each file
     dict = {"errors":{}} # stores the yaml entries for each file
     for module in file_dict:
-        code_num = code_nums[module]
 
-        # checks that user error numbers are valid
-        if code_num not in code_strings:
-            print('Please make sure all error codes are valid and try again.')
-            sys.exit(-1)
+        # adds error codes for cases when user has defined them
+        if module in code_nums:
+            code_num = code_nums[module]
+            # checks that user error numbers are valid
+            if code_num not in code_strings:
+                print('Please make sure all error codes are valid and try again.')
+                sys.exit(-1)
 
-        # adds input prompts for error codes that require additional input
-        elif code_num in ["11","12","13"]:
-            if code_num == "11":
-                prompt = "Please enter errored software for %s: " % (module)
-            elif code_num == '12':
-                prompt = "Please enter errored module for the %s folder: " % (module)
-            else:
-                prompt = "Please enter upstream module error for %s: " % (module)
-            txt =  input(prompt)
+            # adds input prompts for error codes that require additional input
+            elif code_num in ["11","12","13"]:
+                if code_num == "11":
+                    prompt = "Please enter errored software for %s: " % (module)
+                elif code_num == '12':
+                    prompt = "Please enter errored module for the %s folder: " % (module)
+                else:
+                    prompt = "Please enter upstream module error for %s: " % (module)
+                txt =  input(prompt)
+
+            # generates appropriate entry for each file based on error code
+            for file in file_dict[module]:
+                if not os.path.exists(file):
+                    message = "ERROR%s: %s" % (code_num,code_strings[code_num])
+                    if code_num in ["11","12","13"]:
+                        message = message.replace("XXX", txt)
+                    dict['errors'][file] = message
+                
+
+        #add files that do not have error code_strings
+        else:
+            for file in file_dict[module]:
+                if not os.path.exists(file):
+                    dict['errors'][file] = "ERROR CODE REQUIRED!"
 
 
-        # generates appropriate entry for each file based on error code
-        for file in file_dict[module]:
-            message = "ERROR%s: %s" % (code_num,code_strings[code_num])
-            if code_num in ["11","12","13"]:
-                message = message.replace("XXX", txt)
-            dict['errors'][file] = message
 
     path = "analysis/%s_error.yaml" % (run_name)
     os.makedirs(os.path.dirname(path), exist_ok=True)# in case analysis folder doesn't yet exist
@@ -165,9 +178,9 @@ def main():
     parser.add_argument("-t", "--tcellextrect", help="tcellextrect error code")
     parser.add_argument("-x", "--xhla", help="xhla error code")
     args = parser.parse_args()
-    codes_dict = vars(args)
-    codes_dict = {key: value for (key, value) in codes_dict.items() if value is not None}
-    config_yaml_path = codes_dict.pop("yaml") # config_yaml_path is not a module and should be stored separately
+    argument_dict = vars(args)
+    config_yaml_path = argument_dict.pop("yaml") # config_yaml_path is not a module and should be stored separately
+    codes_dict = {key: value for (key, value) in argument_dict.items() if value is not None}
     modules = [x for x in codes_dict]
 
     # open yaml file
@@ -192,9 +205,34 @@ def main():
 
     file_dict = create_dict(run_name, modules,TO,tumor,normal)
     create_yaml(run_name, file_dict, codes_dict)
+
+    #write files and track which modules had missing files
+    missing=[]
     for module in file_dict:
         for file in file_dict[module]:
-            file_writer(file)
+            if not os.path.exists(file):
+                file_writer(file)
+                if module not in missing:
+                    missing.append(module)
+
+
+    # output missing modules and command
+    modules_no_error_code=[key for key in argument_dict if argument_dict[key] == None]
+    need_error_code=[m for m in modules_no_error_code if m in missing]
+    if need_error_code != []:
+
+        print("The following modules had files missing but no error codes were assigned:")
+        print(need_error_code)
+        print("Enter the following command to add error codes to all missing files or enter them manually in analysis/error.yaml:")
+        print(command_writer(config_yaml_path, codes_dict, need_error_code))
+
+def command_writer(yaml_path, codes_dict, need_error_code):
+        str = "python automate_errors.py" + yaml_path
+        for module in codes_dict:
+            str = str + " --%s %s" % (module, codes_dict[module])
+        for module in need_error_code:
+            str = str + " --%s <code>" % (module)
+        return str
 
 
 if __name__=='__main__':
