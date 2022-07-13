@@ -51,6 +51,7 @@ def create_dict(id, modules, TO, tumor, normal=None):
 
 def file_writer(path):
     '''Writes text to a given path. Will create directories as needed.
+    DOES NOT OVERWITE EXISTING FILES!
     '''
     #overwrite existing file
     if os.path.exists(path):
@@ -79,6 +80,7 @@ def create_yaml(run_name, file_dict, code_nums):
     '05': 'Duplicate normal sample -- not used for analysis',
     '11': 'External software bug/issue {software: XXX}',
     '12': 'WES pipeline software bug/issue {module: XXX}',
+    '13': 'Upstream module bug/issue {module: XXX}', #NOT REAL YET!!!!!!
     '21': 'Out of disk space error',
     '22': 'Out of memory error',
     '23': 'Unexpected interruption of service',
@@ -95,18 +97,22 @@ def create_yaml(run_name, file_dict, code_nums):
             print('Please make sure all error codes are valid and try again.')
             sys.exit(-1)
 
-        # 11 requires a software field that should be provided once
-        if code_num == "11":
-            software = input("Please enter errored software for %s: " % (module))
+        # adds input prompts for error codes that require additional input
+        elif code_num in ["11","12","13"]:
+            if code_num == "11":
+                prompt = "Please enter errored software for %s: " % (module)
+            elif code_num == '12':
+                prompt = "Please enter errored module for the %s folder: " % (module)
+            else:
+                prompt = "Please enter upstream module error for %s: " % (module)
+            txt =  input(prompt)
+
 
         # generates appropriate entry for each file based on error code
         for file in file_dict[module]:
             message = "ERROR%s: %s" % (code_num,code_strings[code_num])
-            # 11 and 12 are special cases that require string replacement
-            if code_nums[module] == "11":
-                message = message.replace("XXX", software)
-            elif code_nums[module] == "12":
-                message = message.replace("XXX", module)
+            if code_num in ["11","12","13"]:
+                message = message.replace("XXX", txt)
             dict['errors'][file] = message
 
     path = "analysis/%s_error.yaml" % (run_name)
@@ -132,6 +138,7 @@ def main():
     '05: Duplicate normal sample -- not used for analysis\n'
     '11: External software bug/issue {software: XXX}\n'
     '12: WES pipeline software bug/issue {module: XXX}\n'
+    '13: Upstream module bug/issue {module: XXX}\n'
     '21: Out of disk space error\n'
     '22: Out of memory error\n'
     '23: Unexpected interruption of service\n'
@@ -150,7 +157,8 @@ def main():
     parser.add_argument("-n", "--neoantigen", help="neoantigen error code")
     parser.add_argument("-o", "--optitype", help="optitype error code")
     parser.add_argument("-p", "--purity", help="purity error code")
-    #DO WE NEED RECALIBRATION HERE? NOT INGESTED BUT COULD BE NEEDED FOR ERROR.YAML
+    #DO WE NEED RECALIBRATION HERE? RESULTS ARE IN ALIGN FOLDER BUT ERRORS 11 AND 12 WOULD BE DECIEVING
+    #SINCE THE MODULE WOULD AUTOFILL AS ALIGN WHILE THE TRUE MODULE IS RECALIBRATION
     parser.add_argument("-r", "--report", help="report error code")
     parser.add_argument("-u", "--rna", help="rna error code")
     parser.add_argument("-s", "--somatic", help="somatic error code")
