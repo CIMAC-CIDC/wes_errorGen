@@ -13,7 +13,7 @@ import yaml
 from pathlib import Path
 
 #helpers
-def create_dict(id, modules, TO, tumor, normal=None):
+def create_dict(id, TO, tumor, normal=None):
     '''Takes the run id, errored modules, tumor id, and normal id and
     generates a dictionary of each module and which files must be written.
     '''
@@ -41,15 +41,29 @@ def create_dict(id, modules, TO, tumor, normal=None):
                 optional = f['optional']
                 exclude = TO and (not file_TO)#ensures that no normal files are included for TO samples
                 #if (not optional) and (module in modules) and (not exclude):
+                path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
                 if (not optional) and (not exclude):
-                    path = path.replace('{'+ wildcard +'}', wildcards[wildcard])
-                    # if module not in modules:
-                    #     print("hi!!!!", module, path)
-                    if module in dict:
-                        dict[module].append(path)
+                    # if os.path.exists(path):
+                    #     if os.path.getsize(path) != 0:
+                    #         break
+                    # ADD TO DCITIONARY IF FILE IS ABSENT OR HAS SIZE 0
+                    if not os.path.exists(path):
+                        write= True
+                    elif os.path.getsize(path) == 0: # checked separately due to missing file error
+                        write=True
                     else:
-                        dict[module] = [path]
+                        write=False
+
+                    if write==True:
+                        if module in dict:
+                            dict[module].append(path)
+                        else:
+                            dict[module] = [path]
+
+
+    #print(dict)
     return dict
+
 
 
 def file_writer(path):
@@ -61,8 +75,16 @@ def file_writer(path):
     #     print("File already exists: %s " %(path))
 
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    Path(path).touch()
-    print('wrote: %s' %(path))
+    if not os.path.exists(path):
+        Path(path).touch()
+        print('wrote: %s' %(path))
+        # # for testing purposes only
+        # with open(path, "w") as f:
+        #     f.write("I am Jason Bourne")
+
+    elif os.path.getsize(path) == 0:
+        print('existing blank file: %s' %(path))
+
 
 
 
@@ -113,18 +135,16 @@ def create_yaml(run_name, file_dict, code_nums):
 
             # generates appropriate entry for each file based on error code
             for file in file_dict[module]:
-                if not os.path.exists(file):
-                    message = "ERROR%s: %s" % (code_num,code_strings[code_num])
-                    if code_num in ["11","12","13"]:
-                        message = message.replace("XXX", txt)
-                    dict['errors'][file] = message
-                
+                message = "ERROR%s: %s" % (code_num,code_strings[code_num])
+                if code_num in ["11","12","13"]:
+                    message = message.replace("XXX", txt)
+                dict['errors'][file] = message
+
 
         #add files that do not have error code_strings
         else:
             for file in file_dict[module]:
-                if not os.path.exists(file):
-                    dict['errors'][file] = "ERROR CODE REQUIRED!"
+                dict['errors'][file] = "ERROR CODE REQUIRED!"
 
 
 
@@ -141,7 +161,7 @@ def main():
 
     parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter, # keep newlines
-    description="Simply add name of the setup yaml and the corresponding error code for each failed module \nex. -n 30 -c 21 \n",
+    description="Simply add name of the wes_automator yaml and the corresponding error code for each failed module \nex. ./automate_errors.py -n 30 -c 21 \n",
     epilog= "error codes:\n"
     '00: Unknown error\n'
     '01: Data file corrupt or unreadable\n'
@@ -203,17 +223,16 @@ def main():
         TO = True
 
 
-    file_dict = create_dict(run_name, modules,TO,tumor,normal)
+    file_dict = create_dict(run_name,TO,tumor,normal)
     create_yaml(run_name, file_dict, codes_dict)
 
     #write files and track which modules had missing files
     missing=[]
     for module in file_dict:
         for file in file_dict[module]:
-            if not os.path.exists(file):
-                file_writer(file)
-                if module not in missing:
-                    missing.append(module)
+            file_writer(file)
+            if module not in missing:
+                missing.append(module)
 
 
     # output missing modules and command
@@ -227,7 +246,7 @@ def main():
         print(command_writer(config_yaml_path, codes_dict, need_error_code))
 
 def command_writer(yaml_path, codes_dict, need_error_code):
-        str = "python automate_errors.py" + yaml_path
+        str = "./automate_errors.py " + yaml_path
         for module in codes_dict:
             str = str + " --%s %s" % (module, codes_dict[module])
         for module in need_error_code:
