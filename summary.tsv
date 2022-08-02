@@ -1,0 +1,220 @@
+Building DAG of jobs...
+output_file	date	rule	version	log-file(s)	status	plan
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.bam	Fri Jul 29 15:31:09 2022	aggregate_input	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.bam.bai	Fri Jul 29 15:31:09 2022	aggregate_input	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.fromFastq.bam	-	align_from_fastq	-	analysis/logs/align/CWWGSDRNZ.01/align.sentieon_bwa.CWWGSDRNZ.01.log	missing	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.fromFastq.bam.bai	-	align_from_fastq	-	analysis/logs/align/CWWGSDRNZ.01/align.sentieon_bwa.CWWGSDRNZ.01.log	missing	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.dedup.bam	Fri Jul 29 15:34:05 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRNZ.01/align.dedupSortedUniqueBam.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.dedup.bam.bai	Fri Jul 29 15:34:05 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRNZ.01/align.dedupSortedUniqueBam.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.dedup.metric.txt	Fri Jul 29 15:34:05 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRNZ.01/align.dedupSortedUniqueBam.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.score.txt	Fri Jul 29 15:32:14 2022	scoreSample	-	analysis/logs/align/CWWGSDRNZ.01/align.scoreSample.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.score.txt.idx	Fri Jul 29 15:32:14 2022	scoreSample	-	analysis/logs/align/CWWGSDRNZ.01/align.scoreSample.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.bam	Fri Jul 29 15:02:41 2022	aggregate_input	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.bam.bai	Fri Jul 29 15:02:41 2022	aggregate_input	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.fromFastq.bam	-	align_from_fastq	-	analysis/logs/align/CWWGSDRW7.01/align.sentieon_bwa.CWWGSDRW7.01.log	missing	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.fromFastq.bam.bai	-	align_from_fastq	-	analysis/logs/align/CWWGSDRW7.01/align.sentieon_bwa.CWWGSDRW7.01.log	missing	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.dedup.bam	Fri Jul 29 15:09:11 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRW7.01/align.dedupSortedUniqueBam.CWWGSDRW7.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.dedup.bam.bai	Fri Jul 29 15:09:11 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRW7.01/align.dedupSortedUniqueBam.CWWGSDRW7.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.dedup.metric.txt	Fri Jul 29 15:09:11 2022	dedupSortedUniqueBam	-	analysis/logs/align/CWWGSDRW7.01/align.dedupSortedUniqueBam.CWWGSDRW7.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.score.txt	Fri Jul 29 15:05:48 2022	scoreSample	-	analysis/logs/align/CWWGSDRW7.01/align.scoreSample.CWWGSDRW7.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.sorted.score.txt.idx	Fri Jul 29 15:05:48 2022	scoreSample	-	analysis/logs/align/CWWGSDRW7.01/align.scoreSample.CWWGSDRW7.01.log	ok	update pending
+analysis/align/mapping.csv	Fri Jul 29 15:34:58 2022	collect_map_stats	-	analysis/logs/align/align.collect_map_stats.log	ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_mapping.txt	Fri Jul 29 15:34:58 2022	map_stats	-	analysis/logs/align/CWWGSDRNZ.01/align.map_stats.CWWGSDRNZ.01.log	ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_mapping.txt	Fri Jul 29 15:10:21 2022	map_stats	-	analysis/logs/align/CWWGSDRW7.01/align.map_stats.CWWGSDRW7.01.log	ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_mq_metrics.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_qd_metrics.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_gc_summary.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_gc_metrics.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_aln_metrics.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_is_metrics.txt	Fri Jul 29 15:36:42 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_metrics.pdf	Fri Jul 29 15:36:46 2022	Metrics_sentieon_plots	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_mq_metrics.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_qd_metrics.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_gc_summary.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_gc_metrics.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_aln_metrics.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_is_metrics.txt	Fri Jul 29 15:12:49 2022	Metrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_metrics.pdf	Fri Jul 29 15:14:38 2022	Metrics_sentieon_plots	-		ok	update pending
+analysis/metrics/all_sample_summaries.txt	Fri Jul 29 15:35:14 2022	metrics_collect_target_summaries	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_target_metrics.sample_summary.txt	Fri Jul 29 15:35:14 2022	addExtension	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_target_metrics.txt	Fri Jul 29 15:35:14 2022	targets_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_target_metrics.txt.sample_summary	-	targets_sentieon	-		missing	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_target_metrics.sample_summary.txt	Fri Jul 29 15:12:49 2022	addExtension	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_target_metrics.txt	Fri Jul 29 15:11:04 2022	targets_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_target_metrics.txt.sample_summary	-	targets_sentieon	-		missing	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.realigned.bam	Fri Jul 29 15:41:15 2022	Indel_realigner_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01.realigned.bam.bai	Fri Jul 29 15:41:15 2022	Indel_realigner_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_prerecal_data.table	Fri Jul 29 15:55:35 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated.bam	Fri Jul 29 15:55:35 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated.bam.bai	Fri Jul 29 15:55:35 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_postrecal_data.table	Fri Jul 29 16:07:20 2022	Base_recalibration_postcal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRNZ.01/CWWGSDRNZ.01_recal.csv	Fri Jul 29 16:07:21 2022	Base_recalibration_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.realigned.bam	Fri Jul 29 15:22:18 2022	Indel_realigner_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01.realigned.bam.bai	Fri Jul 29 15:22:18 2022	Indel_realigner_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_prerecal_data.table	Fri Jul 29 15:47:17 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_recalibrated.bam	Fri Jul 29 15:47:17 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_recalibrated.bam.bai	Fri Jul 29 15:47:17 2022	Base_recalibration_precal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_postrecal_data.table	Fri Jul 29 15:50:43 2022	Base_recalibration_postcal_sentieon	-		ok	update pending
+analysis/align/CWWGSDRW7.01/CWWGSDRW7.01_recal.csv	Fri Jul 29 15:50:44 2022	Base_recalibration_sentieon	-		ok	update pending
+analysis/corealignments/CWWGSDRNZ.01/CWWGSDRNZ.01_tn_corealigned.bam	Fri Jul 29 16:04:13 2022	corealignment	-		ok	update pending
+analysis/corealignments/CWWGSDRNZ.01/CWWGSDRNZ.01_tn_corealigned.bam.bai	Fri Jul 29 16:04:13 2022	corealignment	-		ok	update pending
+analysis/germline/CWWGSDRNZ.01/CWWGSDRNZ.01_haplotyper.output.vcf	Fri Jul 29 16:21:06 2022	germline_haplotyper	-		ok	update pending
+analysis/germline/CWWGSDRNZ.01/CWWGSDRNZ.01_haplotyper.targets.vcf.gz	Fri Jul 29 16:21:34 2022	germline_bgzip	-		ok	update pending
+analysis/germline/CWWGSDRNZ.01/CWWGSDRNZ.01_haplotyper.targets.vcf	-	germline_center_targets	-		missing	update pending
+analysis/germline/CWWGSDRNZ.01/CWWGSDRNZ.01_haplotyper.targets.vcf.gz.tbi	Fri Jul 29 16:21:34 2022	germline_tabix	-		ok	update pending
+analysis/germline/CWWGSDRW7.01/CWWGSDRW7.01_haplotyper.output.vcf	Fri Jul 29 15:53:35 2022	germline_haplotyper	-		ok	update pending
+analysis/germline/CWWGSDRW7.01/CWWGSDRW7.01_haplotyper.targets.vcf.gz	Fri Jul 29 15:54:09 2022	germline_bgzip	-		ok	update pending
+analysis/germline/CWWGSDRW7.01/CWWGSDRW7.01_haplotyper.targets.vcf	-	germline_center_targets	-		missing	update pending
+analysis/germline/CWWGSDRW7.01/CWWGSDRW7.01_haplotyper.targets.vcf.gz.tbi	Fri Jul 29 15:54:10 2022	germline_tabix	-		ok	update pending
+analysis/germline/CWWGSDRNZ.01/CWWGSDRNZ.01_vcfcompare.txt	Fri Jul 29 16:21:35 2022	germline_vcfcompare	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.vcf.gz	Fri Jul 29 16:14:00 2022	somatic_calling_tumor_TNscope	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.vcf.gz.tbi	Fri Jul 29 16:14:00 2022	somatic_calling_tumor_TNscope	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.vcf	Fri Jul 29 16:18:58 2022	somatic_twist	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.maf	Fri Jul 29 16:20:01 2022	vcf2maf	-	analysis/logs/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01.tnscope.output.twist_vcf2maf.log.txt	ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.vep.vcf	Fri Jul 29 16:19:59 2022	vcfVEP	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.filtered.vcf	Fri Jul 29 16:18:58 2022	somatic_twist_filter	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.filtered.maf	Fri Jul 29 16:19:51 2022	vcf2maf	-	analysis/logs/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01.tnscope.output.twist.filtered_vcf2maf.log.txt	ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.filtered.vep.vcf	Fri Jul 29 16:19:50 2022	vcfVEP	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.filter.vcf	Fri Jul 29 16:14:01 2022	filter_raw_vcf	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.filter.vcf.gz	Fri Jul 29 16:14:01 2022	somatic_gzip_filtered_vcf	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.filter.maf	Fri Jul 29 16:16:47 2022	vcf2maf	-	analysis/logs/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01.tnscope.filter_vcf2maf.log.txt	ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.filter.vep.vcf	Fri Jul 29 16:16:44 2022	vcfVEP	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.twist.pdf	Fri Jul 29 16:20:04 2022	mutationSignature	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.twist.tri_mtrx.json	Fri Jul 29 16:20:04 2022	mutationSignature	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope_somatic_SNV_summaries.csv	Fri Jul 29 16:19:59 2022	summarize_SNV_mutations	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.mutation_summaries.csv	Fri Jul 29 16:20:01 2022	summarize_somatic_mutations	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.functional_annot_summaries.csv	Fri Jul 29 16:20:01 2022	summarize_somatic_mutations	-		ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope_onco_gene_list.tsv	Fri Jul 29 16:20:01 2022	somatic_get_top_oncogenes	-		ok	update pending
+analysis/report/json/somatic/CWWGSDRNZ.01_tnscope.somatic.json	Fri Jul 29 16:20:04 2022	somatic_json	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01_purity_results.txt	Fri Jul 29 16:43:46 2022	Puritycalls_Facets	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01_purity_postprocessed_results.txt	Fri Jul 29 16:43:51 2022	purityprocessing_filter	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01.cncf	Fri Jul 29 16:53:42 2022	purityplots_postprocessing	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01.optimalpurityvalue.txt	Fri Jul 29 16:53:42 2022	purityplots_postprocessing	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01.iterpurityvalues.txt	Fri Jul 29 16:53:42 2022	purityplots_postprocessing	-		ok	update pending
+analysis/purity/CWWGSDRNZ.01/CWWGSDRNZ.01_facets_gainLoss.bed	Fri Jul 29 16:53:42 2022	purity_callGainLoss	-	analysis/logs/purity/CWWGSDRNZ.01/CWWGSDRNZ.01.callGainLoss.log	ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_pyclone.tsv	Fri Jul 29 16:40:04 2022	clonality_sequenza	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_genome_view.pdf	Fri Jul 29 16:40:04 2022	clonality_sequenza	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_segments.txt	Fri Jul 29 16:40:04 2022	clonality_sequenza	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01.bin50.final.seqz.txt.gz	Fri Jul 29 16:35:18 2022	clonality_addheader	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01.bin50.seqz.txt.gz	Fri Jul 29 16:35:18 2022	clonality_sequenza_binning	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01.seqz.txt.gz	Fri Jul 29 16:29:37 2022	clonality_mergeChroms	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_sequenza_multibam2seqz.done.txt	Fri Jul 29 16:21:24 2022	clonality_sequenza_multibam2seqz	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_sequenza_gainLoss.bed	Fri Jul 29 16:40:04 2022	clonality_callGainLoss	-	analysis/logs/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01.callGainLoss.log	ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_pyclone6.input.tsv	Fri Jul 29 16:40:04 2022	clonality_sequenza2pyclone6	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_pyclone6.results.tsv	Fri Jul 29 16:40:15 2022	clonality_pyclone6_writeOut	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_pyclone6.h5	Fri Jul 29 16:40:14 2022	clonality_pyclone6_fit	-		ok	update pending
+analysis/clonality/CWWGSDRNZ.01/CWWGSDRNZ.01_pyclone6.results.summary.tsv	Fri Jul 29 16:40:15 2022	clonality_pyclone6_summarizeResults	-		ok	update pending
+analysis/report/json/clonality/CWWGSDRNZ.01.clonality.json	Fri Jul 29 16:40:15 2022	clonality_json	-		ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated.cns	Fri Jul 29 16:07:37 2022	cnvkit	-	analysis/logs/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.cnvkit.log	ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated.call.cns	Fri Jul 29 16:07:37 2022	cnvkit	-	analysis/logs/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.cnvkit.log	ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated-scatter.png	Fri Jul 29 16:07:37 2022	cnvkit	-	analysis/logs/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.cnvkit.log	ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01_recalibrated.call.enhanced.cns	Fri Jul 29 16:53:44 2022	cnvkit_enhance	-	analysis/logs/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.cnvkit_enhance.log	ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01_cnvkit_gainLoss.bed	Fri Jul 29 17:06:08 2022	cnvkit_callGainLoss	-	analysis/logs/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.cnvkit_callGainLoss.log	ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.call.cns	Fri Jul 29 17:06:08 2022	cnvkit_rename	-		ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.call.enhanced.cns	Fri Jul 29 17:06:08 2022	cnvkit_rename	-		ok	update pending
+analysis/cnvkit/CWWGSDRNZ.01/CWWGSDRNZ.01.scatter.png	Fri Jul 29 17:06:08 2022	cnvkit_rename	-		ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/MHC_Class_I/CWWGSDRNZ.01.filtered.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/MHC_Class_I/CWWGSDRNZ.01.all_epitopes.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/MHC_Class_II/CWWGSDRNZ.01.filtered.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/MHC_Class_II/CWWGSDRNZ.01.all_epitopes.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/combined/CWWGSDRNZ.01.filtered.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/combined/CWWGSDRNZ.01.all_epitopes.tsv	Fri Jul 29 17:06:08 2022	neoantigen_pvacseq	-	analysis/logs/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01.neoantigen_pvacseq.log	ok	update pending
+analysis/somatic/CWWGSDRNZ.01/CWWGSDRNZ.01_tnscope.output.twist.neoantigen.vep.vcf	Fri Jul 29 16:19:59 2022	neoantigen_vep_annotate	-		ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01_result.tsv	Fri Jul 29 15:41:31 2022	optitype_hlatyping	-		ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01_coverage_plot.pdf	Fri Jul 29 15:41:31 2022	optitype_hlatyping	-		ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.chr6.end1.fastq	Fri Jul 29 15:35:57 2022	optitype_bamtofastq	-	analysis/logs/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.optitype_bamtofastq.log	ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.chr6.end2.fastq	Fri Jul 29 15:35:57 2022	optitype_bamtofastq	-	analysis/logs/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.optitype_bamtofastq.log	ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.chr6.bam	Fri Jul 29 15:35:09 2022	optitype_extract_chr6	-		ok	update pending
+analysis/optitype/CWWGSDRNZ.01/CWWGSDRNZ.01.sorted.chr6.bam.bai	Fri Jul 29 15:35:25 2022	optitype_index_chr6bam	-		ok	update pending
+analysis/hlahd/CWWGSDRNZ.01/result/CWWGSDRNZ.01_final.result.txt	Fri Jul 29 15:57:13 2022	hlahd	-	analysis/logs/hlahd/CWWGSDRNZ.01/CWWGSDRNZ.01.hlahd.log	ok	update pending
+analysis/neoantigen/CWWGSDRNZ.01/CWWGSDRNZ.01_neoantigen_table.tsv	Fri Jul 29 17:06:08 2022	neoantigen_getNeoantigenList	-		ok	update pending
+analysis/report/json/neoantigen/CWWGSDRNZ.01.neoantigen.json	Fri Jul 29 17:06:08 2022	neoantigen_json	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_cnvkit_sequenza.consensus.bed	Fri Jul 29 17:06:08 2022	consensus_cnvkit_sequenza	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_cnvkit_facets.consensus.bed	Fri Jul 29 17:06:08 2022	consensus_cnvkit_facets	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_sequenza_facets.consensus.bed	Fri Jul 29 16:53:42 2022	consensus_sequenza_facets	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_consensus.bed	Fri Jul 29 17:06:08 2022	consensus_all	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_consensus_merged_GAIN.bed	Fri Jul 29 17:06:08 2022	consensus_all_merge	-		ok	update pending
+analysis/copynumber/CWWGSDRNZ.01/CWWGSDRNZ.01_consensus_merged_LOSS.bed	Fri Jul 29 17:06:08 2022	consensus_all_merge	-		ok	update pending
+analysis/report/json/copynumber/CWWGSDRNZ.01.copynumber.json	Fri Jul 29 17:06:08 2022	copynumber_json	-		ok	update pending
+analysis/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor2.txt	Fri Jul 29 15:38:16 2022	msisensor2_copy	-		ok	update pending
+analysis/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor	Fri Jul 29 15:38:16 2022	msisensor2	-	analysis/logs/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor2.log.txt	ok	update pending
+analysis/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor_dis	Fri Jul 29 15:38:16 2022	msisensor2	-	analysis/logs/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor2.log.txt	ok	update pending
+analysis/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor_somatic	Fri Jul 29 15:38:16 2022	msisensor2	-	analysis/logs/msisensor2/CWWGSDRNZ.01/CWWGSDRNZ.01_msisensor2.log.txt	ok	update pending
+analysis/tcellextrect/CWWGSDRNZ.01/CWWGSDRNZ.01_tcellextrect.txt	Fri Jul 29 15:35:19 2022	tcellextrect	-	analysis/logs/tcellextrect/CWWGSDRNZ.01/CWWGSDRNZ.01_tcellextrect.log.txt	ok	update pending
+analysis/tcellextrect/CWWGSDRNZ.01/CWWGSDRNZ.01_tcellplot.pdf	Fri Jul 29 15:35:19 2022	tcellextrect	-	analysis/logs/tcellextrect/CWWGSDRNZ.01/CWWGSDRNZ.01_tcellextrect.log.txt	ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_coverage_metrics.txt	Fri Jul 29 15:35:23 2022	CoverageMetrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_coverage_metrics.txt.sample_summary	-	CoverageMetrics_sentieon	-		missing	update pending
+analysis/metrics/CWWGSDRNZ.01/CWWGSDRNZ.01_coverage_metrics.sample_summary.txt	Fri Jul 29 15:35:24 2022	addExtension	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_coverage_metrics.txt	Fri Jul 29 15:14:19 2022	CoverageMetrics_sentieon	-		ok	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_coverage_metrics.txt.sample_summary	-	CoverageMetrics_sentieon	-		missing	update pending
+analysis/metrics/CWWGSDRW7.01/CWWGSDRW7.01_coverage_metrics.sample_summary.txt	Fri Jul 29 15:14:19 2022	addExtension	-		ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01_result.tsv	Fri Jul 29 15:24:11 2022	optitype_hlatyping	-		ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01_coverage_plot.pdf	Fri Jul 29 15:24:11 2022	optitype_hlatyping	-		ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01.sorted.chr6.end1.fastq	Fri Jul 29 15:15:42 2022	optitype_bamtofastq	-	analysis/logs/optitype/CWWGSDRW7.01/CWWGSDRW7.01.optitype_bamtofastq.log	ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01.sorted.chr6.end2.fastq	Fri Jul 29 15:15:42 2022	optitype_bamtofastq	-	analysis/logs/optitype/CWWGSDRW7.01/CWWGSDRW7.01.optitype_bamtofastq.log	ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01.sorted.chr6.bam	Fri Jul 29 15:14:33 2022	optitype_extract_chr6	-		ok	update pending
+analysis/optitype/CWWGSDRW7.01/CWWGSDRW7.01.sorted.chr6.bam.bai	Fri Jul 29 15:14:55 2022	optitype_index_chr6bam	-		ok	update pending
+analysis/xhla/CWWGSDRNZ.01/report-CWWGSDRNZ.01-hla.json	Fri Jul 29 15:43:43 2022	xhla	-		ok	update pending
+analysis/xhla/CWWGSDRW7.01/report-CWWGSDRW7.01-hla.json	Fri Jul 29 15:23:50 2022	xhla	-		ok	update pending
+analysis/report/config.yaml	Fri Jul 29 15:02:41 2022	report_copy_runInfoFiles	-		ok	update pending
+analysis/report/metasheet.csv	Fri Jul 29 15:02:41 2022	report_copy_runInfoFiles	-		ok	update pending
+analysis/report/WES_Meta/02_WES_Run_Version.tsv	Fri Jul 29 15:02:41 2022	report_meta_version	-		ok	update pending
+analysis/report/WES_Meta/01_WES_Software_Versions.tsv	Fri Jul 29 15:02:41 2022	report_meta_software	-		ok	update pending
+analysis/report/data_quality/01_mapping_stats.tsv	Fri Jul 29 15:34:58 2022	report_data_quality_table	-		ok	update pending
+analysis/report/data_quality/01_details.yaml	Fri Jul 29 15:34:58 2022	report_data_quality_table	-		ok	update pending
+analysis/report/data_quality/02_QC_Plots.tsv	Fri Jul 29 15:36:46 2022	report_data_quality_plots_table	-		ok	update pending
+analysis/report/data_quality/02_details.yaml	Fri Jul 29 15:36:46 2022	report_data_quality_plots_table	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRW7.01_gcBias.png	Fri Jul 29 15:14:41 2022	report_data_quality_gcPlot	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRW7.01_qualityScore.png	Fri Jul 29 15:14:41 2022	report_data_quality_qualityScore	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRW7.01_qualityByCycle.png	Fri Jul 29 15:14:41 2022	report_data_quality_qualityByCycle	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRW7.01_insertSize.png	Fri Jul 29 15:14:41 2022	report_data_quality_insertSize	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRNZ.01_gcBias.png	Fri Jul 29 15:36:46 2022	report_data_quality_gcPlot	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRNZ.01_qualityScore.png	Fri Jul 29 15:36:46 2022	report_data_quality_qualityScore	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRNZ.01_qualityByCycle.png	Fri Jul 29 15:36:46 2022	report_data_quality_qualityByCycle	-		ok	update pending
+analysis/report/data_quality/plots/CWWGSDRNZ.01_insertSize.png	Fri Jul 29 15:36:46 2022	report_data_quality_insertSize	-		ok	update pending
+analysis/report/data_quality/03_coverage_statistics.tsv	Fri Jul 29 15:35:14 2022	report_data_quality_coverage	-		ok	update pending
+analysis/report/data_quality/03_details.yaml	Fri Jul 29 15:35:14 2022	report_data_quality_coverage	-		ok	update pending
+analysis/report/somatic_variants/01_somatic_variants_summary.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/06_VAF.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/plots/20_lollipop_plot.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/plots/21_lollipop_plot.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/plots/22_lollipop_plot.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/plots/23_lollipop_plot.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/plots/24_lollipop_plot.png	Fri Jul 29 16:20:08 2022	report_somatic_variants_maftoolsPlots	-		ok	update pending
+analysis/report/somatic_variants/02_summary_table.csv	Fri Jul 29 16:20:01 2022	report_somatic_variants_summary_tbls	-		ok	update pending
+analysis/report/somatic_variants/03_functional_annotation.csv	Fri Jul 29 16:20:01 2022	report_somatic_variants_summary_tbls	-		ok	update pending
+analysis/report/somatic_variants/04_SNV_Statistics.csv	Fri Jul 29 16:20:01 2022	report_somatic_variants_summary_tbls	-		ok	update pending
+analysis/report/somatic_variants/04_details.yaml	Fri Jul 29 16:20:01 2022	report_somatic_variants_summary_tbls	-		ok	update pending
+analysis/report/somatic_variants/05_tumor_germline_overlap.tsv	Fri Jul 29 16:21:35 2022	report_somatic_variants_germlineCompare	-		ok	update pending
+analysis/report/somatic_variants/05_details.yaml	Fri Jul 29 16:21:35 2022	report_somatic_variants_germlineCompare	-		ok	update pending
+analysis/report/somatic_variants/07_lego_plot.png	Fri Jul 29 16:20:05 2022	report_somatic_variants_legoPlot	-		ok	update pending
+analysis/report/somatic_variants/08_lollipop_plots.csv	Fri Jul 29 16:20:08 2022	report_somatic_variants_lollipop_table	-		ok	update pending
+analysis/report/somatic_variants/08_details.yaml	Fri Jul 29 16:20:08 2022	report_somatic_variants_lollipop_table	-		ok	update pending
+analysis/report/copy_number_variation/01_copy_number_variation_plot.png	Fri Jul 29 16:40:05 2022	report_copynumberPlot	-		ok	update pending
+analysis/report/copy_number_variation/01_details.yaml	Fri Jul 29 16:40:05 2022	report_copynumberPlot	-		ok	update pending
+analysis/report/copy_number_variation/02_tumor_clonality.tsv	Fri Jul 29 16:40:15 2022	report_copy_number_clonality	-		ok	update pending
+analysis/report/copy_number_variation/02_details.yaml	Fri Jul 29 16:40:15 2022	report_copy_number_clonality	-		ok	update pending
+analysis/report/copy_number_variation/03_tumor_purity.tsv	Fri Jul 29 16:53:42 2022	report_copy_number_purity	-		ok	update pending
+analysis/report/copy_number_variation/03_details.yaml	Fri Jul 29 16:53:42 2022	report_copy_number_purity	-		ok	update pending
+analysis/report/neoantigens/01_HLA_Results.tsv	Fri Jul 29 15:57:13 2022	report_neoantigens_HLA	-		ok	update pending
+analysis/report/neoantigens/01_details.yaml	Fri Jul 29 15:57:13 2022	report_neoantigens_HLA	-		ok	update pending
+analysis/hlahd/CWWGSDRW7.01/result/CWWGSDRW7.01_final.result.txt	Fri Jul 29 15:38:23 2022	hlahd	-	analysis/logs/hlahd/CWWGSDRW7.01/CWWGSDRW7.01.hlahd.log	ok	update pending
+analysis/report/neoantigens/02_neoantigen_list.dt	Fri Jul 29 17:06:08 2022	report_neoantigens_neoantigen_list	-		ok	update pending
+analysis/report/neoantigens/02_details.yaml	Fri Jul 29 17:06:08 2022	report_neoantigens_neoantigen_list	-		ok	update pending
+analysis/report/neoantigens/03_tcellextrect.csv	Fri Jul 29 15:35:25 2022	report_neoantigens_tcellextrect	-		ok	update pending
+analysis/report/neoantigens/03_details.yaml	Fri Jul 29 15:35:25 2022	report_neoantigens_tcellextrect	-		ok	update pending
+analysis/report/neoantigens/04_msisensor2.csv	Fri Jul 29 15:38:17 2022	report_neoantigens_msisensor2	-		ok	update pending
+analysis/report/neoantigens/04_details.yaml	Fri Jul 29 15:38:17 2022	report_neoantigens_msisensor2	-		ok	update pending
+analysis/report/json/CWWGSDRNZ.01.wes.json	Fri Jul 29 17:06:08 2022	report_generate_json	-		ok	update pending
+analysis/report/json/align/CWWGSDRNZ.01.mapping.json	Fri Jul 29 15:34:58 2022	align_json_mapping	-		ok	update pending
+analysis/report/json/coverage/CWWGSDRNZ.01.coverage.json	Fri Jul 29 15:35:24 2022	metrics_json_coverage	-		ok	update pending
+analysis/report/json/gc_content/CWWGSDRNZ.01.gc_content.json	Fri Jul 29 15:36:42 2022	metrics_json_gc_content	-		ok	update pending
+analysis/report/json/insert_size/CWWGSDRNZ.01.insert_size.json	Fri Jul 29 15:36:42 2022	metrics_json_insert_size	-		ok	update pending
+analysis/report/json/mean_quality/CWWGSDRNZ.01.mean_quality.json	Fri Jul 29 15:36:42 2022	metrics_json_mean_quality	-		ok	update pending
+analysis/report/json/hla/CWWGSDRNZ.01.hla.json	Fri Jul 29 15:57:13 2022	report_json_hla	-		ok	update pending
+analysis/report/json/tcellextrect/CWWGSDRNZ.01.tcellextrect.json	Fri Jul 29 15:35:25 2022	tcellextrect_json	-		ok	update pending
+analysis/report/json/msisensor2/CWWGSDRNZ.01.msisensor2.json	Fri Jul 29 15:38:17 2022	msisensor2_json	-		ok	update pending
+analysis/report/json/purity/CWWGSDRNZ.01.purity.json	Fri Jul 29 16:53:42 2022	purity_json	-		ok	update pending
+analysis/report/report.html	Fri Jul 29 17:06:17 2022	report_auto_render	-		ok	update pending
+analysis/report.tar.gz	Fri Jul 29 17:06:17 2022	report_gzipReport	-		ok	update pending
+benchmarks.tar.gz	Fri Jul 29 17:06:17 2022	tar_benchmarks	-		ok	update pending

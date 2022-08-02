@@ -1,0 +1,582 @@
+digraph snakemake_dag {
+    graph[bgcolor=white, margin=0];
+    node[shape=box, style=rounded, fontname=sans,                 fontsize=10, penwidth=2];
+    edge[penwidth=2, color=grey];
+	0[label = "target", color = "0.25 0.6 0.85", style="rounded"];
+	1[label = "aggregate_input", color = "0.25 0.6 0.85", style="rounded"];
+	2[label = "align_from_fastq\nsample: CWWGSDRNZ.01", color = "0.16 0.6 0.85", style="rounded"];
+	3[label = "dedupSortedUniqueBam", color = "0.11 0.6 0.85", style="rounded"];
+	4[label = "scoreSample", color = "0.45 0.6 0.85", style="rounded"];
+	5[label = "aggregate_input", color = "0.25 0.6 0.85", style="rounded"];
+	6[label = "align_from_fastq\nsample: CWWGSDRW7.01", color = "0.16 0.6 0.85", style="rounded"];
+	7[label = "dedupSortedUniqueBam", color = "0.11 0.6 0.85", style="rounded"];
+	8[label = "scoreSample", color = "0.45 0.6 0.85", style="rounded"];
+	9[label = "collect_map_stats", color = "0.50 0.6 0.85", style="rounded"];
+	10[label = "map_stats", color = "0.19 0.6 0.85", style="rounded"];
+	11[label = "map_stats", color = "0.19 0.6 0.85", style="rounded"];
+	12[label = "Metrics_sentieon", color = "0.43 0.6 0.85", style="rounded"];
+	13[label = "Metrics_sentieon_plots", color = "0.46 0.6 0.85", style="rounded"];
+	14[label = "Metrics_sentieon", color = "0.43 0.6 0.85", style="rounded"];
+	15[label = "Metrics_sentieon_plots", color = "0.46 0.6 0.85", style="rounded"];
+	16[label = "metrics_collect_target_summaries", color = "0.60 0.6 0.85", style="rounded"];
+	17[label = "addExtension\nregion: target", color = "0.06 0.6 0.85", style="rounded"];
+	18[label = "targets_sentieon", color = "0.50 0.6 0.85", style="rounded"];
+	19[label = "addExtension\nregion: target", color = "0.06 0.6 0.85", style="rounded"];
+	20[label = "targets_sentieon", color = "0.50 0.6 0.85", style="rounded"];
+	21[label = "Indel_realigner_sentieon", color = "0.28 0.6 0.85", style="rounded"];
+	22[label = "Base_recalibration_precal_sentieon", color = "0.58 0.6 0.85", style="rounded"];
+	23[label = "Base_recalibration_postcal_sentieon", color = "0.34 0.6 0.85", style="rounded"];
+	24[label = "Base_recalibration_sentieon", color = "0.00 0.6 0.85", style="rounded"];
+	25[label = "Indel_realigner_sentieon", color = "0.28 0.6 0.85", style="rounded"];
+	26[label = "Base_recalibration_precal_sentieon", color = "0.58 0.6 0.85", style="rounded"];
+	27[label = "Base_recalibration_postcal_sentieon", color = "0.34 0.6 0.85", style="rounded"];
+	28[label = "Base_recalibration_sentieon", color = "0.00 0.6 0.85", style="rounded"];
+	29[label = "corealignment\nrun: CWWGSDRNZ.01", color = "0.57 0.6 0.85", style="rounded"];
+	30[label = "germline_haplotyper", color = "0.26 0.6 0.85", style="rounded"];
+	31[label = "germline_bgzip", color = "0.40 0.6 0.85", style="rounded"];
+	32[label = "germline_center_targets", color = "0.19 0.6 0.85", style="rounded"];
+	33[label = "germline_tabix", color = "0.49 0.6 0.85", style="rounded"];
+	34[label = "germline_haplotyper", color = "0.26 0.6 0.85", style="rounded"];
+	35[label = "germline_bgzip", color = "0.40 0.6 0.85", style="rounded"];
+	36[label = "germline_center_targets", color = "0.19 0.6 0.85", style="rounded"];
+	37[label = "germline_tabix", color = "0.49 0.6 0.85", style="rounded"];
+	38[label = "germline_vcfcompare\nrun: CWWGSDRNZ.01", color = "0.56 0.6 0.85", style="rounded"];
+	39[label = "somatic_calling_tumor_TNscope", color = "0.46 0.6 0.85", style="rounded"];
+	40[label = "somatic_twist\ncaller: tnscope", color = "0.09 0.6 0.85", style="rounded"];
+	41[label = "vcf2maf", color = "0.56 0.6 0.85", style="rounded"];
+	42[label = "vcfVEP\ncaller: tnscope.output\ntype: twist", color = "0.24 0.6 0.85", style="rounded"];
+	43[label = "somatic_twist_filter", color = "0.30 0.6 0.85", style="rounded"];
+	44[label = "vcf2maf", color = "0.56 0.6 0.85", style="rounded"];
+	45[label = "vcfVEP\ncaller: tnscope.output.twist\ntype: filtered", color = "0.24 0.6 0.85", style="rounded"];
+	46[label = "filter_raw_vcf\ncaller: tnscope", color = "0.03 0.6 0.85", style="rounded"];
+	47[label = "somatic_gzip_filtered_vcf", color = "0.23 0.6 0.85", style="rounded"];
+	48[label = "vcf2maf", color = "0.56 0.6 0.85", style="rounded"];
+	49[label = "vcfVEP\ntype: filter", color = "0.24 0.6 0.85", style="rounded"];
+	50[label = "mutationSignature\ncaller: tnscope", color = "0.59 0.6 0.85", style="rounded"];
+	51[label = "summarize_SNV_mutations\ncaller: tnscope", color = "0.31 0.6 0.85", style="rounded"];
+	52[label = "summarize_somatic_mutations\ncaller: tnscope", color = "0.60 0.6 0.85", style="rounded"];
+	53[label = "somatic_get_top_oncogenes\ncaller: tnscope", color = "0.17 0.6 0.85", style="rounded"];
+	54[label = "somatic_json", color = "0.15 0.6 0.85", style="rounded"];
+	55[label = "Puritycalls_Facets\nrun: CWWGSDRNZ.01", color = "0.26 0.6 0.85", style="rounded"];
+	56[label = "purityprocessing_filter", color = "0.37 0.6 0.85", style="rounded"];
+	57[label = "purityplots_postprocessing", color = "0.53 0.6 0.85", style="rounded"];
+	58[label = "purity_callGainLoss", color = "0.51 0.6 0.85", style="rounded"];
+	59[label = "clonality_sequenza", color = "0.54 0.6 0.85", style="rounded"];
+	60[label = "clonality_addheader", color = "0.14 0.6 0.85", style="rounded"];
+	61[label = "clonality_sequenza_binning", color = "0.29 0.6 0.85", style="rounded"];
+	62[label = "clonality_mergeChroms", color = "0.14 0.6 0.85", style="rounded"];
+	63[label = "clonality_sequenza_multibam2seqz\nrun: CWWGSDRNZ.01", color = "0.35 0.6 0.85", style="rounded"];
+	64[label = "clonality_callGainLoss", color = "0.57 0.6 0.85", style="rounded"];
+	65[label = "clonality_sequenza2pyclone6", color = "0.12 0.6 0.85", style="rounded"];
+	66[label = "clonality_pyclone6_writeOut", color = "0.10 0.6 0.85", style="rounded"];
+	67[label = "clonality_pyclone6_fit", color = "0.54 0.6 0.85", style="rounded"];
+	68[label = "clonality_pyclone6_summarizeResults", color = "0.48 0.6 0.85", style="rounded"];
+	69[label = "clonality_json", color = "0.32 0.6 0.85", style="rounded"];
+	70[label = "cnvkit\nrun: CWWGSDRNZ.01\ntmr: CWWGSDRNZ.01", color = "0.41 0.6 0.85", style="rounded"];
+	71[label = "cnvkit_enhance", color = "0.66 0.6 0.85", style="rounded"];
+	72[label = "cnvkit_callGainLoss", color = "0.42 0.6 0.85", style="rounded"];
+	73[label = "cnvkit_rename", color = "0.23 0.6 0.85", style="rounded"];
+	74[label = "neoantigen_pvacseq\ntumor: CWWGSDRNZ.01", color = "0.12 0.6 0.85", style="rounded"];
+	75[label = "neoantigen_vep_annotate", color = "0.63 0.6 0.85", style="rounded"];
+	76[label = "optitype_hlatyping", color = "0.23 0.6 0.85", style="rounded"];
+	77[label = "optitype_bamtofastq", color = "0.08 0.6 0.85", style="rounded"];
+	78[label = "optitype_extract_chr6", color = "0.61 0.6 0.85", style="rounded"];
+	79[label = "optitype_index_chr6bam", color = "0.02 0.6 0.85", style="rounded"];
+	80[label = "hlahd", color = "0.07 0.6 0.85", style="rounded"];
+	81[label = "neoantigen_getNeoantigenList", color = "0.52 0.6 0.85", style="rounded"];
+	82[label = "neoantigen_json", color = "0.38 0.6 0.85", style="rounded"];
+	83[label = "consensus_cnvkit_sequenza", color = "0.32 0.6 0.85", style="rounded"];
+	84[label = "consensus_cnvkit_facets", color = "0.28 0.6 0.85", style="rounded"];
+	85[label = "consensus_sequenza_facets", color = "0.31 0.6 0.85", style="rounded"];
+	86[label = "consensus_all", color = "0.07 0.6 0.85", style="rounded"];
+	87[label = "consensus_all_merge\ncnv_type: GAIN", color = "0.21 0.6 0.85", style="rounded"];
+	88[label = "consensus_all_merge\ncnv_type: LOSS", color = "0.21 0.6 0.85", style="rounded"];
+	89[label = "copynumber_json", color = "0.45 0.6 0.85", style="rounded"];
+	90[label = "msisensor2_copy", color = "0.01 0.6 0.85", style="rounded"];
+	91[label = "msisensor2\nrun: CWWGSDRNZ.01", color = "0.51 0.6 0.85", style="rounded"];
+	92[label = "tcellextrect\nrun: CWWGSDRNZ.01", color = "0.57 0.6 0.85", style="rounded"];
+	93[label = "CoverageMetrics_sentieon", color = "0.61 0.6 0.85", style="rounded"];
+	94[label = "addExtension\nregion: coverage", color = "0.06 0.6 0.85", style="rounded"];
+	95[label = "CoverageMetrics_sentieon", color = "0.61 0.6 0.85", style="rounded"];
+	96[label = "addExtension\nregion: coverage", color = "0.06 0.6 0.85", style="rounded"];
+	97[label = "optitype_hlatyping", color = "0.23 0.6 0.85", style="rounded"];
+	98[label = "optitype_bamtofastq", color = "0.08 0.6 0.85", style="rounded"];
+	99[label = "optitype_extract_chr6", color = "0.61 0.6 0.85", style="rounded"];
+	100[label = "optitype_index_chr6bam", color = "0.02 0.6 0.85", style="rounded"];
+	101[label = "xhla", color = "0.24 0.6 0.85", style="rounded"];
+	102[label = "xhla", color = "0.24 0.6 0.85", style="rounded"];
+	103[label = "report_copy_runInfoFiles", color = "0.39 0.6 0.85", style="rounded"];
+	104[label = "report_meta_version", color = "0.05 0.6 0.85", style="rounded"];
+	105[label = "report_meta_software", color = "0.09 0.6 0.85", style="rounded"];
+	106[label = "report_data_quality_table", color = "0.44 0.6 0.85", style="rounded"];
+	107[label = "report_data_quality_plots_table", color = "0.02 0.6 0.85", style="rounded"];
+	108[label = "report_data_quality_gcPlot", color = "0.55 0.6 0.85", style="rounded"];
+	109[label = "report_data_quality_qualityScore", color = "0.15 0.6 0.85", style="rounded"];
+	110[label = "report_data_quality_qualityByCycle", color = "0.03 0.6 0.85", style="rounded"];
+	111[label = "report_data_quality_insertSize", color = "0.41 0.6 0.85", style="rounded"];
+	112[label = "report_data_quality_gcPlot", color = "0.55 0.6 0.85", style="rounded"];
+	113[label = "report_data_quality_qualityScore", color = "0.15 0.6 0.85", style="rounded"];
+	114[label = "report_data_quality_qualityByCycle", color = "0.03 0.6 0.85", style="rounded"];
+	115[label = "report_data_quality_insertSize", color = "0.41 0.6 0.85", style="rounded"];
+	116[label = "report_data_quality_coverage", color = "0.17 0.6 0.85", style="rounded"];
+	117[label = "report_somatic_variants_maftoolsPlots", color = "0.38 0.6 0.85", style="rounded"];
+	118[label = "report_somatic_variants_summary_tbls", color = "0.11 0.6 0.85", style="rounded"];
+	119[label = "report_somatic_variants_germlineCompare", color = "0.34 0.6 0.85", style="rounded"];
+	120[label = "report_somatic_variants_legoPlot", color = "0.47 0.6 0.85", style="rounded"];
+	121[label = "report_somatic_variants_lollipop_table", color = "0.59 0.6 0.85", style="rounded"];
+	122[label = "report_copynumberPlot", color = "0.10 0.6 0.85", style="rounded"];
+	123[label = "report_copy_number_clonality", color = "0.58 0.6 0.85", style="rounded"];
+	124[label = "report_copy_number_purity", color = "0.44 0.6 0.85", style="rounded"];
+	125[label = "report_neoantigens_HLA", color = "0.04 0.6 0.85", style="rounded"];
+	126[label = "hlahd", color = "0.07 0.6 0.85", style="rounded"];
+	127[label = "report_neoantigens_neoantigen_list", color = "0.18 0.6 0.85", style="rounded"];
+	128[label = "report_neoantigens_tcellextrect", color = "0.62 0.6 0.85", style="rounded"];
+	129[label = "report_neoantigens_msisensor2", color = "0.34 0.6 0.85", style="rounded"];
+	130[label = "report_generate_json", color = "0.40 0.6 0.85", style="rounded"];
+	131[label = "align_json_mapping\nrun: CWWGSDRNZ.01", color = "0.33 0.6 0.85", style="rounded"];
+	132[label = "metrics_json_coverage\nrun: CWWGSDRNZ.01", color = "0.64 0.6 0.85", style="rounded"];
+	133[label = "metrics_json_gc_content\nrun: CWWGSDRNZ.01", color = "0.13 0.6 0.85", style="rounded"];
+	134[label = "metrics_json_insert_size\nrun: CWWGSDRNZ.01", color = "0.20 0.6 0.85", style="rounded"];
+	135[label = "metrics_json_mean_quality\nrun: CWWGSDRNZ.01", color = "0.66 0.6 0.85", style="rounded"];
+	136[label = "report_json_hla\nrun: CWWGSDRNZ.01", color = "0.05 0.6 0.85", style="rounded"];
+	137[label = "tcellextrect_json", color = "0.20 0.6 0.85", style="rounded"];
+	138[label = "msisensor2_json", color = "0.47 0.6 0.85", style="rounded"];
+	139[label = "purity_json", color = "0.29 0.6 0.85", style="rounded"];
+	140[label = "report_auto_render", color = "0.21 0.6 0.85", style="rounded"];
+	141[label = "report_gzipReport", color = "0.29 0.6 0.85", style="rounded"];
+	142[label = "tar_benchmarks", color = "0.49 0.6 0.85", style="rounded"];
+	1 -> 0
+	3 -> 0
+	5 -> 0
+	7 -> 0
+	9 -> 0
+	12 -> 0
+	13 -> 0
+	14 -> 0
+	15 -> 0
+	16 -> 0
+	21 -> 0
+	22 -> 0
+	23 -> 0
+	24 -> 0
+	25 -> 0
+	26 -> 0
+	27 -> 0
+	28 -> 0
+	29 -> 0
+	30 -> 0
+	31 -> 0
+	33 -> 0
+	34 -> 0
+	35 -> 0
+	37 -> 0
+	38 -> 0
+	39 -> 0
+	40 -> 0
+	41 -> 0
+	43 -> 0
+	44 -> 0
+	46 -> 0
+	47 -> 0
+	48 -> 0
+	50 -> 0
+	51 -> 0
+	52 -> 0
+	53 -> 0
+	54 -> 0
+	55 -> 0
+	56 -> 0
+	57 -> 0
+	58 -> 0
+	59 -> 0
+	64 -> 0
+	65 -> 0
+	66 -> 0
+	68 -> 0
+	69 -> 0
+	70 -> 0
+	71 -> 0
+	72 -> 0
+	73 -> 0
+	74 -> 0
+	81 -> 0
+	82 -> 0
+	83 -> 0
+	84 -> 0
+	85 -> 0
+	86 -> 0
+	87 -> 0
+	88 -> 0
+	89 -> 0
+	90 -> 0
+	92 -> 0
+	93 -> 0
+	94 -> 0
+	18 -> 0
+	17 -> 0
+	95 -> 0
+	96 -> 0
+	20 -> 0
+	19 -> 0
+	76 -> 0
+	78 -> 0
+	77 -> 0
+	97 -> 0
+	99 -> 0
+	98 -> 0
+	101 -> 0
+	102 -> 0
+	103 -> 0
+	104 -> 0
+	105 -> 0
+	106 -> 0
+	107 -> 0
+	116 -> 0
+	117 -> 0
+	118 -> 0
+	119 -> 0
+	120 -> 0
+	121 -> 0
+	122 -> 0
+	123 -> 0
+	124 -> 0
+	125 -> 0
+	127 -> 0
+	128 -> 0
+	129 -> 0
+	130 -> 0
+	140 -> 0
+	141 -> 0
+	142 -> 0
+	2 -> 1
+	1 -> 3
+	4 -> 3
+	1 -> 4
+	6 -> 5
+	5 -> 7
+	8 -> 7
+	5 -> 8
+	10 -> 9
+	11 -> 9
+	1 -> 10
+	3 -> 10
+	5 -> 11
+	7 -> 11
+	3 -> 12
+	12 -> 13
+	7 -> 14
+	14 -> 15
+	17 -> 16
+	19 -> 16
+	10 -> 16
+	11 -> 16
+	18 -> 17
+	3 -> 18
+	20 -> 19
+	7 -> 20
+	3 -> 21
+	21 -> 22
+	22 -> 23
+	23 -> 24
+	22 -> 24
+	7 -> 25
+	25 -> 26
+	26 -> 27
+	27 -> 28
+	26 -> 28
+	25 -> 29
+	26 -> 29
+	21 -> 29
+	22 -> 29
+	22 -> 30
+	32 -> 31
+	30 -> 32
+	31 -> 33
+	26 -> 34
+	36 -> 35
+	34 -> 36
+	35 -> 37
+	35 -> 38
+	37 -> 38
+	31 -> 38
+	33 -> 38
+	29 -> 39
+	39 -> 40
+	42 -> 41
+	40 -> 42
+	40 -> 43
+	45 -> 44
+	43 -> 45
+	39 -> 46
+	46 -> 47
+	49 -> 48
+	46 -> 49
+	41 -> 50
+	42 -> 51
+	41 -> 52
+	41 -> 53
+	41 -> 54
+	50 -> 54
+	52 -> 54
+	53 -> 54
+	26 -> 55
+	22 -> 55
+	55 -> 56
+	56 -> 57
+	57 -> 58
+	60 -> 59
+	61 -> 60
+	62 -> 61
+	63 -> 62
+	22 -> 63
+	26 -> 63
+	59 -> 64
+	59 -> 65
+	67 -> 66
+	65 -> 67
+	66 -> 68
+	66 -> 69
+	68 -> 69
+	65 -> 69
+	22 -> 70
+	70 -> 71
+	39 -> 71
+	57 -> 71
+	71 -> 72
+	70 -> 73
+	71 -> 73
+	75 -> 74
+	76 -> 74
+	80 -> 74
+	40 -> 75
+	77 -> 76
+	78 -> 77
+	79 -> 77
+	3 -> 78
+	78 -> 79
+	77 -> 80
+	74 -> 81
+	74 -> 82
+	72 -> 83
+	64 -> 83
+	72 -> 84
+	58 -> 84
+	64 -> 85
+	58 -> 85
+	83 -> 86
+	84 -> 86
+	85 -> 86
+	86 -> 87
+	86 -> 88
+	70 -> 89
+	71 -> 89
+	59 -> 89
+	57 -> 89
+	86 -> 89
+	87 -> 89
+	88 -> 89
+	91 -> 90
+	7 -> 91
+	3 -> 91
+	3 -> 92
+	3 -> 93
+	93 -> 94
+	7 -> 95
+	95 -> 96
+	98 -> 97
+	99 -> 98
+	100 -> 98
+	7 -> 99
+	99 -> 100
+	78 -> 101
+	79 -> 101
+	99 -> 102
+	100 -> 102
+	9 -> 106
+	108 -> 107
+	109 -> 107
+	110 -> 107
+	111 -> 107
+	112 -> 107
+	113 -> 107
+	114 -> 107
+	115 -> 107
+	15 -> 108
+	15 -> 109
+	15 -> 110
+	15 -> 111
+	13 -> 112
+	13 -> 113
+	13 -> 114
+	13 -> 115
+	16 -> 116
+	41 -> 117
+	52 -> 118
+	51 -> 118
+	38 -> 119
+	50 -> 120
+	117 -> 121
+	59 -> 122
+	68 -> 123
+	57 -> 124
+	97 -> 125
+	126 -> 125
+	76 -> 125
+	80 -> 125
+	98 -> 126
+	81 -> 127
+	92 -> 128
+	90 -> 129
+	131 -> 130
+	132 -> 130
+	133 -> 130
+	134 -> 130
+	135 -> 130
+	136 -> 130
+	54 -> 130
+	82 -> 130
+	137 -> 130
+	138 -> 130
+	139 -> 130
+	69 -> 130
+	89 -> 130
+	10 -> 131
+	11 -> 131
+	94 -> 132
+	96 -> 132
+	12 -> 133
+	14 -> 133
+	12 -> 134
+	14 -> 134
+	12 -> 135
+	14 -> 135
+	97 -> 136
+	126 -> 136
+	76 -> 136
+	80 -> 136
+	92 -> 137
+	90 -> 138
+	57 -> 139
+	103 -> 140
+	104 -> 140
+	105 -> 140
+	106 -> 140
+	107 -> 140
+	116 -> 140
+	117 -> 140
+	118 -> 140
+	119 -> 140
+	120 -> 140
+	121 -> 140
+	122 -> 140
+	123 -> 140
+	124 -> 140
+	125 -> 140
+	127 -> 140
+	128 -> 140
+	129 -> 140
+	130 -> 140
+	140 -> 141
+	1 -> 142
+	3 -> 142
+	5 -> 142
+	7 -> 142
+	9 -> 142
+	12 -> 142
+	13 -> 142
+	14 -> 142
+	15 -> 142
+	16 -> 142
+	21 -> 142
+	22 -> 142
+	23 -> 142
+	24 -> 142
+	25 -> 142
+	26 -> 142
+	27 -> 142
+	28 -> 142
+	29 -> 142
+	30 -> 142
+	31 -> 142
+	33 -> 142
+	34 -> 142
+	35 -> 142
+	37 -> 142
+	38 -> 142
+	39 -> 142
+	40 -> 142
+	41 -> 142
+	43 -> 142
+	44 -> 142
+	46 -> 142
+	47 -> 142
+	48 -> 142
+	50 -> 142
+	51 -> 142
+	52 -> 142
+	53 -> 142
+	54 -> 142
+	55 -> 142
+	56 -> 142
+	57 -> 142
+	58 -> 142
+	59 -> 142
+	64 -> 142
+	65 -> 142
+	66 -> 142
+	68 -> 142
+	69 -> 142
+	70 -> 142
+	71 -> 142
+	72 -> 142
+	73 -> 142
+	74 -> 142
+	81 -> 142
+	82 -> 142
+	83 -> 142
+	84 -> 142
+	85 -> 142
+	86 -> 142
+	87 -> 142
+	88 -> 142
+	89 -> 142
+	90 -> 142
+	92 -> 142
+	93 -> 142
+	94 -> 142
+	18 -> 142
+	17 -> 142
+	95 -> 142
+	96 -> 142
+	20 -> 142
+	19 -> 142
+	76 -> 142
+	78 -> 142
+	77 -> 142
+	97 -> 142
+	99 -> 142
+	98 -> 142
+	101 -> 142
+	102 -> 142
+	103 -> 142
+	104 -> 142
+	105 -> 142
+	106 -> 142
+	107 -> 142
+	116 -> 142
+	117 -> 142
+	118 -> 142
+	119 -> 142
+	120 -> 142
+	121 -> 142
+	122 -> 142
+	123 -> 142
+	124 -> 142
+	125 -> 142
+	127 -> 142
+	128 -> 142
+	129 -> 142
+	130 -> 142
+	140 -> 142
+	141 -> 142
+}
