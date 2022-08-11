@@ -129,7 +129,7 @@ def main():
     group.add_argument("-j", "--job", help="job id number that errored out")
     parser.add_argument("--folder", default="/mnt/ssd/wes/", help="location of WES results")# should it be /mnt/ssd/wes/analysis?
     # change these defaults later...
-    parser.add_argument("-d", "--dag", default="wes_pipeline.dot", help="file containing a complete dag of the run. can be generated with: snakemake -s cidc_wes/wes.snakefile --forceall -n --dag > sample_dag.dot")
+    parser.add_argument("-d", "--dag", default="sample_dag.dot", help="file containing a complete dag of the run. can be generated with: snakemake -s cidc_wes/wes.snakefile --forceall -n --dag > sample_dag.dot")
     # does not relate rules to missing files so should not be set right now
     #parser.add_argument("-t", "--tsv", default="summary.tsv", help="file conatining summary of all files in a  workflow")
     parser.add_argument("-m", "--metasheet", default="metasheet.csv", help="name of the metasheet used")
@@ -159,9 +159,11 @@ def main():
     # if file, parse file, get rule, get job
     #print(args.job)
     downstream_jobs=get_downstream(args.job, nodes)
+    print(downstream_jobs)
     downstream_files = []
     for job in downstream_jobs:
         downstream_files += get_node_files(job, graph, files)
+    print(downstream_files)
 
 
     #GET RUN, TUMOR AND NORMAL NAMES
