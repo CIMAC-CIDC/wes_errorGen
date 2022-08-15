@@ -128,7 +128,6 @@ def main():
     group.add_argument("-f", "--file", help="name of the output file that errored out")
     group.add_argument("-j", "--job", help="job id number that errored out")
     parser.add_argument("--folder", default="/mnt/ssd/wes/", help="location of WES results")# should it be /mnt/ssd/wes/analysis?
-    # change these defaults later...
     parser.add_argument("-d", "--dag", default="sample_dag.dot", help="file containing a complete dag of the run. can be generated with: snakemake -s cidc_wes/wes.snakefile --forceall -n --dag > sample_dag.dot")
     # does not relate rules to missing files so should not be set right now
     #parser.add_argument("-t", "--tsv", default="summary.tsv", help="file conatining summary of all files in a  workflow")
@@ -152,20 +151,6 @@ def main():
 
     files=pd.read_csv("summary.tsv", header=1, delimiter="\t")
 
-
-    #GET DOWNSTREAM MODULES AND FILES (RIGHT NOW ONLY JOBID IS SUPPORTED)
-    #SOME PSEUDO-CODE HERE FOR ALTERNATIVE INPUTS
-    #if rule loop over nodes in dag and return job of rule in # qeustion
-    # if file, parse file, get rule, get job
-    #print(args.job)
-    downstream_jobs=get_downstream(args.job, nodes)
-    print(downstream_jobs)
-    downstream_files = []
-    for job in downstream_jobs:
-        downstream_files += get_node_files(job, graph, files)
-    print(downstream_files)
-
-
     #GET RUN, TUMOR AND NORMAL NAMES
     samples=pd.read_csv(args.folder + "/" + args.metasheet, header=15).loc[0]#pandas does not seem to like out metasheet
     run_name = samples["RunName"]
@@ -181,8 +166,36 @@ def main():
     #     TO = True
 
 
+    #GET DOWNSTREAM MODULES AND FILES (RIGHT NOW ONLY JOBID IS SUPPORTED)
+    #SOME PSEUDO-CODE HERE FOR ALTERNATIVE INPUTS
+    #if rule loop over nodes in dag and return job of rule in # qeustion
+    # if file, parse file, get rule, get job
+    #print(args.job)
+    downstream_jobs=get_downstream(args.job, nodes)
+    print(downstream_jobs)
+    downstream_files = []
+    for job in downstream_jobs:
+        downstream_files += get_node_files(job, graph, files)
+
+    #CONVERT FILES INTO PROPER NAMES BASED ON METASHEET
+    print("old:", downstream_files)
+    for i in range(len(downstream_files)):
+        downstream_files[i] = downstream_files[i].replace("RUN", run_name)
+        downstream_files[i] = downstream_files[i].replace("TUMOR", tumor)
+        downstream_files[i] = downstream_files[i].replace("NORMAL", normal)
+        downstream_files[i]
+    print()
+    print("new:", downstream_files)
+
+
+
+
+
     #GET INGESTED FILES FROM CIDC API AND INTERSECT WITH DOWNSTREAM FILES
     ingested_files=get_ingested_files(run_name, args.tumor_only, tumor, normal)
+    #APPLY TRANSFORMATION HERE IF summary tsv/dag AND METASHEET DON'T MATCH
+
+
     affected_files=sorted([x for x in downstream_files if x in ingested_files])
 
     #HANDLE EACH FILE
@@ -280,7 +293,7 @@ def main():
     with open(p, "w") as outfile:
         yaml.dump(yaml_dict, outfile, width=float("inf"), sort_keys=True)
 
-    print("successfully wrote yaml to: %s" % (path))
+    print("successfully wrote yaml to: %s" % (p))
 
 
 if __name__=='__main__':
