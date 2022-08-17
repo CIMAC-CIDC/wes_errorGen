@@ -124,18 +124,19 @@ def main():
     epilog="")
     group = parser.add_mutually_exclusive_group(required=True)
     #dryrun here?
-    group.add_argument("-r", "--rule", help="name of the rule that errored out")
-    group.add_argument("-f", "--file", help="name of the output file that errored out")
+    #commenting these inputs until they are implemented
+    #group.add_argument("-r", "--rule", help="name of the rule that errored out")
+    #group.add_argument("-f", "--file", help="name of the output file that errored out")
     group.add_argument("-j", "--job", help="job id number that errored out")
-    parser.add_argument("--folder", default="/mnt/ssd/wes/", help="location of WES results")# should it be /mnt/ssd/wes/analysis?
+    parser.add_argument("--folder", default="/mnt/ssd/wes/", help="location of WES results. default: /mnt/ssd/wes/")# should it be /mnt/ssd/wes/analysis?
     parser.add_argument("-d", "--dag", default="sample_dag.dot", help="file containing a complete dag of the run. can be generated with: snakemake -s cidc_wes/wes.snakefile --forceall -n --dag > sample_dag.dot")
     # does not relate rules to missing files so should not be set right now
     #parser.add_argument("-t", "--tsv", default="summary.tsv", help="file conatining summary of all files in a  workflow")
-    parser.add_argument("-m", "--metasheet", default="metasheet.csv", help="name of the metasheet used")
-    parser.add_argument("-t", "--tumor_only", default=False, help="whether the sample was run with a matched normal")
+    parser.add_argument("-m", "--metasheet", default="metasheet.csv", help="name of the metasheet used. default: metasheet.csv")
+    parser.add_argument("-t", "--tumor_only", default=False, help="whether the sample was run with a matched normal. defualt: False")
     args = parser.parse_args()
     argument_dict = vars(args) #needed?
-    print(argument_dict)
+    #print(argument_dict)
 
     #CREATE JOB GRAPH AND FILE TO RULE TABLE
     graph = pydot.graph_from_dot_file(args.dag)
@@ -172,7 +173,7 @@ def main():
     # if file, parse file, get rule, get job
     #print(args.job)
     downstream_jobs=get_downstream(args.job, nodes)
-    print(downstream_jobs)
+    #print(downstream_jobs)
     downstream_files = []
     for job in downstream_jobs:
         downstream_files += get_node_files(job, graph, files)
@@ -191,12 +192,20 @@ def main():
 
 
 
+
+
     #GET INGESTED FILES FROM CIDC API AND INTERSECT WITH DOWNSTREAM FILES
     ingested_files=get_ingested_files(run_name, args.tumor_only, tumor, normal)
     #APPLY TRANSFORMATION HERE IF summary tsv/dag AND METASHEET DON'T MATCH
 
 
-    affected_files=sorted([x for x in downstream_files if x in ingested_files])
+    #affected_files=sorted([x for x in downstream_files if x in ingested_files])
+    #we use a set comprehension to create a sorted set of the intersection of downsream and ingested files
+    affected_files=sorted({x for x in downstream_files if x in ingested_files})
+    print('The following files are affected by the error and are nessisary for ingestion:')
+    for x in affected_files:
+        print(x)
+    print()
 
     #HANDLE EACH FILE
     yaml_dict = {"errors":{}}
@@ -208,29 +217,30 @@ def main():
             path = args.folder + file
         else:
             path = args.folder + "/" + file
-        print(path)
+        print("CURRENT FILE:", path)
 
         #ADD FILE STATUS TO HELP THE USER
         #file_status=""
         if not os.path.exists(path):
-            print("file status: missing")
+            print("FILE STATUS: missing")
             file_writer(path) # we create missing files for ingestion
 
         elif os.path.getsize(path) == 0:
-            print("file status: empty")
+            print("FILE STATUS: empty")
 
         #add condition here to handle unhealthy looking file
 
         else:
-            print("file status: uncertain")
+            print("FILE STATUS: uncertain")
             #if file is not empty, we add a preview
-            print("file_preview:")
+            print("FILE PREVIEW:")
             subprocess.run("head -n 5 %s" % (path), shell=True)
-            print()
+            #print()
             # if os.path.exists(path):
             #     print("file_preview:")
             #     subprocess.run("head -n 5 %s" % (path), shell=True)
             #     print()
+            print("END FILE PREVIEW")
 
 
         #GETTING ERROR CODE FROM USER
@@ -275,7 +285,7 @@ def main():
             else:
                 if comment == "p":
                     comment = previous
-                response=input("You are about to add '%s' as a comment to %s. Is this ok (y/n)" % (comment, file))
+                response=input("You are about to add '%s' as a comment to %s. Is this ok (y/n): " % (comment, file))
                 if response == "y":
                     valid = True
                     previous = comment
